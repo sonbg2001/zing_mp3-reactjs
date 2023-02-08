@@ -7,7 +7,7 @@ function DefaultLayout({ children }) {
       <Sidebar />
       <div>
         <Header />
-        <div>{children}</div>
+        <div  className="main-page">{children}</div>
       </div>
       <Playingbar/>
     </div>

@@ -59,3 +59,16 @@ svg {
     opacity: .3;
     cursor: none;
 }
+
+.main-page {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 240px;
+  top: 70px;
+  right: 0;
+  height: 100%;
+  padding: 0 var(--padding-section);
+  z-index: 99;
+  transition: right 0.4s;  
+}
