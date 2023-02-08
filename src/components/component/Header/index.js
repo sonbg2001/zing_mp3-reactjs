@@ -1,27 +1,49 @@
-import './Header.scss'
-import { BsArrowLeft, BsArrowRight, BsSearch } from "react-icons/bs";
+import "./Header.scss";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 import { RiVipDiamondLine } from "react-icons/ri";
 import { FaTshirt } from "react-icons/fa";
-import { BiUserCircle } from "react-icons/bi";
+import HeaderSearch from "./HeaderSearch";
 function Header() {
-  return <header className='header'>
-    <div className='level'>
-    <div className='level-left'>
-        <button> <BsArrowLeft/></button>
-        <button> <BsArrowRight/></button>
-        <button> <BsSearch/></button>
-        <FiSettings/>
-        <RiVipDiamondLine/>
-        <FaTshirt/>
-        <BiUserCircle/>
-        <form>
-            <input type="text"  placeholder='Tìm kiếm tên bài hát, nghệ sỹ, lời bài hát...'/>
-        </form>
-    </div>
-    <div className='level-right'></div>
-    </div>
-  </header>;
+  return (
+    <header className="header">
+      <div className="level">
+        <div className="level-left">
+          <button className="level-left__icon disabled">
+            <BsArrowLeft />
+          </button>
+          <button className="level-left__icon">
+            <BsArrowRight />
+          </button> 
+          <HeaderSearch/>
+        </div>
+        <div className="level-right">
+          <div className="level-right__icon">
+            <i className="header-icon">
+              <FaTshirt />
+            </i>
+          </div>
+          <div className="level-right__icon">
+            <i className="header-icon">
+              <RiVipDiamondLine />
+            </i>
+          </div>
+          <div className="level-right__icon">
+            <i className="header-icon">
+              <FiSettings />
+            </i>
+          </div>
+          <i className="header-user">
+            <img
+              className="header-user-img"
+              src="https://avatar.talk.zdn.vn/default.jpg"
+              alt="User"
+            />
+          </i>
+        </div>
+      </div>
+    </header>
+  );
 }
 
 export default Header;

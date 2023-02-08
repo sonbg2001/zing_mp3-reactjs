@@ -1,6 +1,6 @@
 import Header from "../../component/Header";
+import Playingbar from "../../component/Playingbar";
 import Sidebar from "../../component/Sidebar";
-import PlayerControl from "../../component/PlayerControl";
 function DefaultLayout({ children }) {
   return (
     <div>
@@ -9,7 +9,7 @@ function DefaultLayout({ children }) {
         <Header />
         <div>{children}</div>
       </div>
-      <PlayerControl/>
+      <Playingbar/>
     </div>
   );
 }

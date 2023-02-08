@@ -232,6 +232,7 @@ function Sidebar() {
               </li>
             </ul>
           </nav>
+          
         </nav>
         <div className="login-nav-container">
           <div className="text">

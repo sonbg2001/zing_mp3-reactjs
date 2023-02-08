@@ -1,16 +1,17 @@
 @import "normalize.css";
 
 :root {
+  --alpha-bg: hsla(0,0%,100%,0.1);
+  --border-primary: hsla(0,0%,100%,0.1);
+  --layout-bg: #170f23;
   --primary: #ff0000;
+  --primary-bg: #34224f;
+  --padding-section: 59px;
+  --purple-primary: #9b4de0;
   --sidebar-bg: hsla(0, 0%, 100%, 0.05);
   --text-primary: #fff;
-  --layout-bg: #170f23;
-  --border-primary: hsla(0,0%,100%,0.1);
-  --purple-primary: #9b4de0;
-  --white: #fff;
-  --padding-section: 59px;
-  --alpha-bg: hsla(0,0%,100%,0.1);
   --text-item-hover: #fff;
+  --white: #fff;
 }
 
 * {
@@ -48,4 +49,13 @@ ul {
 
 svg {
   margin-right: 10px;
+}
+
+.disabled {
+    pointer-events: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    opacity: .3;
+    cursor: none;
 }
