@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    left: 240px;
+    top: 0;
+    right: 0;
+    height: 70px;
+    padding: 0 var(--padding-section);
+    z-index: 99;
+    min-width: 660px;
+    transition: right .4s;
+}
+
+.header .level {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.level {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header .level-left {
+    flex-grow: 1;
+    margin-right: 10px;
+}

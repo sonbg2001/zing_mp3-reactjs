@@ -1,0 +1,93 @@
+.sidebar {
+    height: calc(100vh - 90px);
+    position: relative;
+    z-index: 100;
+    width: 240px;
+    background-color: var(--sidebar-bg);
+    height: 100%;
+    padding-top: 70px;
+    padding-bottom: 54px;
+}
+
+.sidebar-wapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.navbar {
+    display: block;
+}
+
+.navbar-brand {
+  width: 240px;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  padding: 0 25px 0 28px;
+  display: flex;
+  align-items: center;
+}
+.navbar-logo__link {
+  width: 120px;
+  height: 40px;
+}
+
+.navbar-main {
+    position: relative;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+
+
+.navbar-item {
+    font-weight: 700;
+    color: var(--navigation-text);
+    border-left: 3px solid transparent;
+    
+}
+
+.navbar-item.active {
+    background-color: var(--alpha-bg);
+    color: var(--text-item-hover);
+    border-left: 3px solid var(--purple-primary);
+
+}
+
+.navbar-item a {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 25px;
+}
+
+//divide
+.sidebar-divide {
+    position: relative;
+    height: 1px;
+}
+.sidebar-divide:after {
+    content: "";
+    border-top: 1px solid var(--border-primary);
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    top: 0;
+}
+
+.login-nav-container {
+    padding: 15px 8px;
+    border-radius: 8px;
+    margin: 10px 20px;
+    text-align: center;
+    color: var(--white);
+    background-color: var(--purple-primary);
+    margin-top: 15px!important;
+}
+
+
+
+
+

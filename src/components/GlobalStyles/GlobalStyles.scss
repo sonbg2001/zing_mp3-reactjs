@@ -1,0 +1,51 @@
+@import "normalize.css";
+
+:root {
+  --primary: #ff0000;
+  --sidebar-bg: hsla(0, 0%, 100%, 0.05);
+  --text-primary: #fff;
+  --layout-bg: #170f23;
+  --border-primary: hsla(0,0%,100%,0.1);
+  --purple-primary: #9b4de0;
+  --white: #fff;
+  --padding-section: 59px;
+  --alpha-bg: hsla(0,0%,100%,0.1);
+  --text-item-hover: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background-color: var(--layout-bg);
+  font-weight: 400;
+  -ms-scroll-chaining: none;
+  overscroll-behavior: none;
+  overflow: hidden;
+
+  //Set background
+  // background-image: url("https://haycafe.vn/wp-content/uploads/2022/02/Anh-gai-xinh-de-thuong.jpg");
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // opacity: 0.75;
+}
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+svg {
+  margin-right: 10px;
+}
