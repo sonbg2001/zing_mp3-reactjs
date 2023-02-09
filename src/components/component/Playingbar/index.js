@@ -245,25 +245,7 @@ function Playingbar() {
                     height: "3px",
                   }}
                 >
-                <input
-                      type="range"
-                      // id="cowbell"
-                      name="cowbell"
-                      min="0"
-                      max="100"
-                      value={""+ (audio.currentTime * 100) / audio.duration || "0"}
-                      step="10"
-                      style={{
-                        width: `${document.querySelector(".volumn-duration-bar") && document.querySelector(".volumn-duration-bar").offsetWidth}px`,
-                        height: "3px",
-                        cursor: "pointer",
-                        opacity: "0.5",
-                        // display: "none",
-                      }}
-                      onChange={(e) => {
-                        audio.currentTime = e.target.value *  audio.duration /100;
-                      }}
-                    />
+                
                   <div
                     tabIndex={0}
                     aria-valuemax={100}
