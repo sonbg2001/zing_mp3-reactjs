@@ -25,16 +25,14 @@ function Playingbar() {
   );
   const [currentTime, setCurrentTime] = useState(0);
 
-  //
+  // FormatTime
   function formatTime(seconds) {
     let minutes = Math.floor(seconds / 60);
-    minutes = (minutes >= 10) ? minutes : "0" + minutes;
+    minutes = minutes >= 10 ? minutes : "0" + minutes;
     seconds = Math.floor(seconds % 60);
-    seconds = (seconds >= 10) ? seconds : "0" + seconds;
+    seconds = seconds >= 10 ? seconds : "0" + seconds;
     return minutes + ":" + seconds;
   }
-  //
-
 
   useEffect(() => {
     if (play) audio.play();
@@ -43,13 +41,14 @@ function Playingbar() {
       setCurrentTime(audio.currentTime);
     };
 
+    audio.muted = !speaker;
     return () => {
       if (audio) {
         audio.pause(); // to enable garbage collection
       }
     };
     // eslint-disable-next-line
-  }, [play]);
+  }, [play, speaker]);
   return (
     <div id="playing-bar">
       <div className="player-controls">
@@ -149,34 +148,62 @@ function Playingbar() {
                 </button>
               </div>
               <div className="player-mar">
-                <span className="player-time left">{formatTime(currentTime)}</span>
+                <span className="player-time left">
+                  {currentTime ? formatTime(currentTime) : "00:00"}
+                </span>
                 <div className="duration-bar">
                   <div
                     className="duration-bar-slider"
                     style={{
                       borderRadius: "4px",
-                      background:
-                        "linear-gradient(to right, var(--progressbar-active-bg) 0%, var(--progressbar-active-bg) 31.3522%, var(--progressbar-player-bg) 31.3522%, var(--progressbar-player-bg) 100%)",
+                      background: `linear-gradient(to right, var(--progressbar-active-bg) 0%, var(--progressbar-active-bg) ${
+                        (audio.currentTime / audio.duration) * 100
+                      }%, var(--progressbar-player-bg) 0%, var(--progressbar-player-bg) 100%)`,
                       alignSelf: "center",
                     }}
+                   
                   >
+                    <input
+                      type="range"
+                      id="cowbell"
+                      name="cowbell"
+                      min="0"
+                      max="100"
+                      value={""+ (audio.currentTime * 100) / audio.duration || "0"}
+                      step="10"
+                      style={{
+                        width: `${document.querySelector(".duration-bar") && document.querySelector(".duration-bar").offsetWidth}px`,
+                        height: "3px",
+                        cursor: "pointer",
+                        
+                      }}
+                      onChange={(e) => {
+                        audio.currentTime = e.target.value *  audio.duration /100;
+                      }}
+                    />
                     <div
                       tabIndex={0}
-                      aria-valuemax="179.644082"
+                      aria-valuemax={audio.duration}
                       aria-valuemin={0}
-                      aria-valuenow="56.32231"
+                      aria-valuenow={audio.currentTime}
                       draggable="false"
                       role="slider"
                       className="duration-bar-slider__handle"
                       style={{
                         borderRadius: "50%",
                         backgroundColor: "var(--progressbar-active-bg)",
-                        transform: "translate(126.806px, -3.5px)",
+                        transform: `translate(${
+                          document.querySelector(".duration-bar") &&
+                          (audio.currentTime / audio.duration) *
+                            document.querySelector(".duration-bar").offsetWidth
+                        }px, -6.5px)`,
                       }}
                     />
                   </div>
                 </div>
-                <span className="player-time right">{formatTime(audio.duration)}</span>
+                <span className="player-time right">
+                  {audio.duration ? formatTime(audio.duration) : "00:00"}
+                </span>
               </div>
             </div>
           </div>
@@ -207,15 +234,49 @@ function Playingbar() {
                 <i>{speaker ? <RxSpeakerLoud /> : <RxSpeakerOff />}</i>
               </button>
               <div className="volumn-duration-bar">
-                <div className="volumn-slider-bar">
+                <div
+                  className="volumn-slider-bar"
+                  style={{
+                    borderRadius: "4px",
+                    background:
+                      "linear-gradient(to right, var(--progressbar-active-bg) 0%, var(--progressbar-active-bg) 30%, var(--progressbar-player-bg) 30%, var(--progressbar-player-bg) 100%  )",
+                    alignSelf: "center",
+                    width: "100%",
+                    height: "3px",
+                  }}
+                >
+                <input
+                      type="range"
+                      // id="cowbell"
+                      name="cowbell"
+                      min="0"
+                      max="100"
+                      value={""+ (audio.currentTime * 100) / audio.duration || "0"}
+                      step="10"
+                      style={{
+                        width: `${document.querySelector(".volumn-duration-bar") && document.querySelector(".volumn-duration-bar").offsetWidth}px`,
+                        height: "3px",
+                        cursor: "pointer",
+                        opacity: "0.5",
+                        // display: "none",
+                      }}
+                      onChange={(e) => {
+                        audio.currentTime = e.target.value *  audio.duration /100;
+                      }}
+                    />
                   <div
                     tabIndex={0}
                     aria-valuemax={100}
                     aria-valuemin={0}
-                    aria-valuenow={30}
+                    aria-valuenow={100}
                     draggable="false"
                     role="slider"
                     className="volumn-slider-handle"
+                    style={{
+                      borderRadius: "50%",
+                      backgroundColor: "var(--progressbar-active-bg)",
+                      transform: `translate(47.6116px, -3.5px)`,
+                    }}
                   />
                 </div>
               </div>
