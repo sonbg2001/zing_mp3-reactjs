@@ -2,7 +2,7 @@ import "./Header.scss";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 import { RiVipDiamondLine } from "react-icons/ri";
-import { FaTshirt } from "react-icons/fa";
+import { MdLanguage } from "react-icons/md";
 import HeaderSearch from "./HeaderSearch";
 function Header() {
   return (
@@ -20,7 +20,7 @@ function Header() {
         <div className="level-right">
           <div className="level-right__icon">
             <i className="header-icon">
-              <FaTshirt />
+              <MdLanguage />
             </i>
           </div>
           <div className="level-right__icon">

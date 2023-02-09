@@ -4,14 +4,21 @@
 :root {
   --alpha-bg: hsla(0,0%,100%,0.1);
   --border-primary: hsla(0,0%,100%,0.1);
+  --border-player: hsla(0,0%,100%,0.1);
   --layout-bg: #170f23;
+  --link-text-hover: #c273ed;
   --primary: #ff0000;
   --primary-bg: #34224f;
   --padding-section: 59px;
+  --player-bg: #130c1c;
+  --player-text: #fff;
   --purple-primary: #9b4de0;
+  --progressbar-player-bg: hsla(0,0%,100%,0.3);
+  --progressbar-active-bg: #fff;
   --sidebar-bg: hsla(0, 0%, 100%, 0.05);
   --text-primary: #fff;
   --text-item-hover: #fff;
+  --text-secondary: hsla(0,0%,100%,0.5);
   --white: #fff;
 }
 
@@ -46,6 +53,10 @@ a {
 ul {
   list-style: none;
   padding: 0;
+}
+
+button {
+  cursor: pointer;
 }
 
 svg {

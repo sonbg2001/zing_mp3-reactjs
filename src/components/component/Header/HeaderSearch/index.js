@@ -1,7 +1,7 @@
 import "./HeaderSearch.scss";
 import { BsSearch } from "react-icons/bs";
 import { FaTimes } from "react-icons/fa";
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 function HeaderSearch() {
   const [search, setSearch] = useState("");
   const searchRef = useRef();
@@ -39,4 +39,4 @@ function HeaderSearch() {
   );
 }
 
-export default HeaderSearch;
+export default memo(HeaderSearch);

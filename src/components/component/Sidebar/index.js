@@ -3,6 +3,21 @@ import paths from "../../../routes/configPath";
 import Button from "../Button";
 import "./Sidebar.scss";
 function Sidebar() {
+  const handleNavClick = (e) => {
+    var navbarItems = document.getElementsByClassName("navbar-item");
+    for (var i = 0; i < navbarItems.length; i++) {
+      navbarItems[i].addEventListener("click", function () {
+        var current = document.getElementsByClassName("navbar-item active");
+        current[0].classList.toggle("active");
+        // for (let j of current) {
+        //   j.classList.toggle("active");
+        // }
+        if (!this.classList.contains("active")) this.classList.add("active");
+        // this.classList.add("active");
+      });
+    }
+  };
+  handleNavClick();
   return (
     <aside className="sidebar">
       <div className="sidebar-wapper">
@@ -20,7 +35,7 @@ function Sidebar() {
           </div>
           <nav className="navbar-main">
             <ul className="navbar-menu">
-              <li className="navbar-item">
+              <li className="navbar-item active">
                 <Link to="/" title="Cá nhân">
                   <svg
                     width="20"
@@ -72,12 +87,6 @@ function Sidebar() {
                     ></path>
                   </svg>
                   <span>#zingchart</span>
-                  <button
-                    className="zm-btn shuffle-play-btn button"
-                    tabIndex="0"
-                  >
-                    <i className="icon ic-20-Play-Outline"></i>
-                  </button>
                 </Link>
               </li>
               <li className="navbar-item">
@@ -125,7 +134,10 @@ function Sidebar() {
 
           <nav className="navbar-main">
             <ul className="navbar-menu">
-              <li className="navbar-item active">
+
+
+            
+              <li className="navbar-item">
                 <Link to={paths.new} title="Nhạc mới">
                   <svg
                     width="20"
@@ -204,12 +216,6 @@ function Sidebar() {
                     ></path>
                   </svg>
                   <span>Top 100</span>
-                  <button
-                    className="zm-btn shuffle-play-btn button"
-                    tabIndex="0"
-                  >
-                    <i className="icon ic-20-Play-Outline"></i>
-                  </button>
                 </Link>
               </li>
               <li className="navbar-item">
@@ -234,7 +240,6 @@ function Sidebar() {
               </li>
             </ul>
           </nav>
-          
         </nav>
         <div className="login-nav-container">
           <div className="text">
