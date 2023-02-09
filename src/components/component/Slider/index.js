@@ -19,9 +19,9 @@ export default function Slide() {
       <div className="gallery">
         <div className="gallery-container">
           <Slider {...settings}>
-            {Dataslide.map((item) => {
+            {Dataslide.map((item, index) => {
               return (
-                <div className="gallery-item gallery-item-previous">
+                <div key={index} className="gallery-item gallery-item-previous">
                   <div className="zm-card-img">
                     <Link to='/'><img src={item.src} alt="" /></Link>
                   </div>
