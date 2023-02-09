@@ -1,0 +1,38 @@
+.container{
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    .gallery {
+        padding-top: 32px;
+    }
+}
+.gallery-container{
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    margin: 0 -15px 20px;
+    transition: height .2s;
+}
+.gallery-item {
+    cursor: pointer;
+    // position: absolute;
+    height: auto;
+    transition: transform .5s ease-in-out,opacity .5s ease-in-out,z-index 0s linear .25s;
+    width: 33.33%;
+    z-index: 0;
+    border-radius: 8px;
+    padding: 0 15px;
+}
+
+.zm-card-img{
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    img{
+        height: auto;
+        width: 100%;
+    }
+}

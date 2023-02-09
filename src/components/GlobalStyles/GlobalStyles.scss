@@ -1,5 +1,6 @@
 @import "normalize.css";
 
+
 :root {
   --alpha-bg: hsla(0,0%,100%,0.1);
   --border-primary: hsla(0,0%,100%,0.1);
@@ -61,7 +62,7 @@ svg {
 }
 
 .main-page {
-  display: flex;
+  display: block;
   align-items: center;
   position: fixed;
   left: 240px;
