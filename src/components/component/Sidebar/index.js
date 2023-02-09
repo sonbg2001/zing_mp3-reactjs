@@ -9,11 +9,8 @@ function Sidebar() {
       navbarItems[i].addEventListener("click", function () {
         var current = document.getElementsByClassName("navbar-item active");
         current[0].classList.toggle("active");
-        // for (let j of current) {
-        //   j.classList.toggle("active");
-        // }
+
         if (!this.classList.contains("active")) this.classList.add("active");
-        // this.classList.add("active");
       });
     }
   };
@@ -131,12 +128,10 @@ function Sidebar() {
 
           {/* divide */}
           <div className="sidebar-divide"></div>
-
+        </nav>
+        <div className="navbar-under">
           <nav className="navbar-main">
             <ul className="navbar-menu">
-
-
-            
               <li className="navbar-item">
                 <Link to={paths.new} title="Nhạc mới">
                   <svg
@@ -240,15 +235,15 @@ function Sidebar() {
               </li>
             </ul>
           </nav>
-        </nav>
-        <div className="login-nav-container">
-          <div className="text">
-            Đăng nhập để khám phá playlist dành riêng cho bạn
-          </div>
+          <div className="login-nav-container">
+            <div className="text">
+              Đăng nhập để khám phá playlist dành riêng cho bạn
+            </div>
 
-          <Button>
-            <span>Đăng Nhập</span>
-          </Button>
+            <Button>
+              <span>Đăng Nhập</span>
+            </Button>
+          </div>
         </div>
 
         {/* divide */}

@@ -16,6 +16,7 @@
   --progressbar-player-bg: hsla(0,0%,100%,0.3);
   --progressbar-active-bg: #fff;
   --sidebar-bg: hsla(0, 0%, 100%, 0.05);
+  --scroll-thumb-bg: hsla(0,0%,100%,0.3);
   --text-primary: #fff;
   --text-item-hover: #fff;
   --text-secondary: hsla(0,0%,100%,0.5);
@@ -80,12 +81,36 @@ svg {
   top: 70px;
   right: 0;
   height: 464px;
-  overflow: auto;
+  overflow: hidden scroll;
   padding: 0 var(--padding-section);
   z-index: 99;
   transition: right 0.4s;  
+  &:hover::-webkit-scrollbar {
+    display: block;
+  }
 }
 img{
   height: auto;
   width: 100%;
+}
+
+//Scroll
+::-webkit-scrollbar {
+  width: 4px;
+  display: none;
+}
+
+/* Track */
+// ::-webkit-scrollbar-track {
+//   // background: var(--scroll-thumb-bg); 
+// }
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb-bg); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #000; 
 }
