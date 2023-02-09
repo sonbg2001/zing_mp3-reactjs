@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import "./Playingbar.scss";
 
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
@@ -10,6 +10,7 @@ import { GiMicrophone } from "react-icons/gi";
 import { TbRepeat, TbRepeatOnce } from "react-icons/tb";
 import { FaRandom } from "react-icons/fa";
 import { FiPauseCircle } from "react-icons/fi";
+// import Player from "../Player";
 
 function Playingbar() {
   const [play, setPlay] = useState(false);
@@ -17,6 +18,38 @@ function Playingbar() {
   const [like, setLike] = useState(false);
   const [random, setRandom] = useState(false);
   const [repeat, setRepeat] = useState(0);
+  const [audio] = useState(
+    new Audio(
+      "https://vnso-zn-5-tf-mp3-320s1-zmp3.zmdcdn.me/a7b00f664f26a678ff37/4867814653821791479?authen=exp=1676106545~acl=/a7b00f664f26a678ff37/*~hmac=5fb0fb4b26f7343e6edc5d33409e78a3&fs=MTY3NTkzMzmUsIC0NTmUsICzNXx3ZWJWNnwwfDQyLjExNS45Ny4xMzE"
+    )
+  );
+  const [currentTime, setCurrentTime] = useState(0);
+
+  //
+  function formatTime(seconds) {
+    let minutes = Math.floor(seconds / 60);
+    minutes = (minutes >= 10) ? minutes : "0" + minutes;
+    seconds = Math.floor(seconds % 60);
+    seconds = (seconds >= 10) ? seconds : "0" + seconds;
+    return minutes + ":" + seconds;
+  }
+  //
+
+
+  useEffect(() => {
+    if (play) audio.play();
+    else audio.pause();
+    audio.ontimeupdate = () => {
+      setCurrentTime(audio.currentTime);
+    };
+
+    return () => {
+      if (audio) {
+        audio.pause(); // to enable garbage collection
+      }
+    };
+    // eslint-disable-next-line
+  }, [play]);
   return (
     <div id="playing-bar">
       <div className="player-controls">
@@ -95,7 +128,7 @@ function Playingbar() {
                     setPlay(!play);
                   }}
                 >
-                  <i>{play ? <BsPlayCircle /> : <FiPauseCircle />}</i>
+                  <i>{!play ? <BsPlayCircle /> : <FiPauseCircle />}</i>
                 </button>
                 <button className="player-controls-actions-icon fz-40">
                   <i className="svg-hover">
@@ -116,7 +149,7 @@ function Playingbar() {
                 </button>
               </div>
               <div className="player-mar">
-                <span className="player-time left">01.32</span>
+                <span className="player-time left">{formatTime(currentTime)}</span>
                 <div className="duration-bar">
                   <div
                     className="duration-bar-slider"
@@ -143,7 +176,7 @@ function Playingbar() {
                     />
                   </div>
                 </div>
-                <span className="player-time right">03:26</span>
+                <span className="player-time right">{formatTime(audio.duration)}</span>
               </div>
             </div>
           </div>
@@ -196,6 +229,8 @@ function Playingbar() {
           </div>
         </div>
       </div>
+
+      {/* <Player /> */}
     </div>
   );
 }
