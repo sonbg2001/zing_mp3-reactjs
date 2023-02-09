@@ -1,0 +1,60 @@
+.zm-carousel-wrapper{
+    position: relative;
+}
+.zm-carousel {
+    display: flex;
+    margin: 0 -15px;
+    // -webkit-user-select: none;
+    // -ms-user-select: none;
+    user-select: none;
+    overflow: hidden;
+}
+.zm-carousel__container {
+    display: flex;
+    z-index: 3;
+    width: 100%;
+}
+.zm-carousel-item{
+    width: 16.66667%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 14px;
+    padding-right: 14px;
+    float: left;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+.playlist-wrapper{
+    .zm-card{
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+    }
+}
+.zm-card-image {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+.zm-card-image figure {
+    line-height: 0;
+    height: 0;
+    padding-bottom: 100%;
+    // hidden: ;
+}
+.zm-section{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+}
+.discovery-btn{
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
