@@ -20,13 +20,15 @@ function Playingbar() {
   const [random, setRandom] = useState(false);
   const [repeat, setRepeat] = useState(0);
   const listAudio = [
-    "./assets/musics/song1.mp3",
-    "./assets/musics/song2.mp3",
-    "./assets/musics/song3.mp3",
+    { songName: "Bai hat 1", songPath: "./assets/musics/song1.mp3" },
+    { songName: "Bai hat 2", songPath: "./assets/musics/song2.mp3" },
+    { songName: "Bai hat 3", songPath: "./assets/musics/song3.mp3" },
+    { songName: "Bai hat 4", songPath: "./assets/musics/song4.mp3" },
+    { songName: "Bai hat 5", songPath: "./assets/musics/song5.mp3" },
   ];
   const [currentSong, setCurrentSong] = useState(0);
 
-  const [audio] = useState(new Audio(listAudio[currentSong]));
+  const [audio] = useState(new Audio(listAudio[currentSong].songPath));
   const [currentTime, setCurrentTime] = useState(0);
 
   // FormatTime
@@ -40,7 +42,7 @@ function Playingbar() {
 
   function updateAudioSource() {
     console.log("update song");
-    audio.src = listAudio[currentSong];
+    audio.src = listAudio[currentSong].songPath;
     audio.load();
   }
 
@@ -50,23 +52,22 @@ function Playingbar() {
     if (random) {
       console.log("random song");
 
-      setCurrentSong(Math.floor(Math.random() * 3));
+      setCurrentSong(Math.floor(Math.random() * listAudio.length));
       updateAudioSource();
     } else if (repeat === 1) {
       console.log("repeat song");
 
-      setCurrentSong((currentSong + 1) % 3);
+      setCurrentSong((currentSong + 1) % listAudio.length);
     }
 
     updateAudioSource();
   }
 
-  
   useEffect(() => {
     console.log("currentSong: ", currentSong);
     audio.ontimeupdate = () => {
       setCurrentTime(audio.currentTime);
-      if (audio.currentTime > 0.99*audio.duration) {
+      if (audio.currentTime > 0.99 * audio.duration) {
         console.log("end song");
         nextSong();
       }
@@ -75,8 +76,6 @@ function Playingbar() {
     audio.muted = !speaker;
     if (play) audio.play();
     else audio.pause();
-
-    
 
     return () => {
       if (audio) {
@@ -154,7 +153,7 @@ function Playingbar() {
                 <button
                   className="player-controls-actions-icon fz-40"
                   onClick={() => {
-                    setCurrentSong((currentSong + 3 - 1) % 3);
+                    setCurrentSong((currentSong + listAudio.length - 1) % listAudio.length);
                     updateAudioSource();
                   }}
                 >
@@ -174,7 +173,7 @@ function Playingbar() {
                 <button
                   className="player-controls-actions-icon fz-40"
                   onClick={() => {
-                    setCurrentSong((currentSong + 1) % 3);
+                    setCurrentSong((currentSong + 1) % listAudio.length);
                     updateAudioSource();
                   }}
                 >
