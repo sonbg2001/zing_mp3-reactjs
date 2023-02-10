@@ -15,9 +15,9 @@ export default function Playlist() {
       <div className="zm-carousel-wrapper">
         <div className="zm-carousel">
           <div className="zm-carousel__container">
-            {Data.map((item) => {
+            {Data.map((item, index) => {
               return (
-                <div className="zm-carousel-item">
+                <div className="zm-carousel-item" key={index}>
                   <div className="playlist-wrapper">
                     <div className="zm-card">
                       <div className="zm-card-image">
