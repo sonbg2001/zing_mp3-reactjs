@@ -20,11 +20,36 @@ function Playingbar() {
   const [random, setRandom] = useState(false);
   const [repeat, setRepeat] = useState(0);
   const listAudio = [
-    { songName: "Bai hat 1", songPath: "./assets/musics/song1.mp3" },
-    { songName: "Bai hat 2", songPath: "./assets/musics/song2.mp3" },
-    { songName: "Bai hat 3", songPath: "./assets/musics/song3.mp3" },
-    { songName: "Bai hat 4", songPath: "./assets/musics/song4.mp3" },
-    { songName: "Bai hat 5", songPath: "./assets/musics/song5.mp3" },
+    {
+      songName: "Bai hat 1",
+      songPath: "./assets/musics/song1.mp3",
+      author: "Son Van 1",
+      image: "https://haycafe.vn/wp-content/uploads/2022/02/Anh-gai-xinh-Viet-Nam.jpg",
+    },
+    {
+      songName: "Bai hat 2",
+      songPath: "./assets/musics/song2.mp3",
+      author: "Son Van 2",
+      image: "https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/e/d/2/5/ed251cf560be4747e7737b535c357f07.jpg",
+    },
+    {
+      songName: "Bai hat 3",
+      songPath: "./assets/musics/song3.mp3",
+      author: "Son Van 3",
+      image: "https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/7/6/1/6/76167d27268546570f7fa21d8c708ad2.jpg",
+    },
+    {
+      songName: "Bai hat 4",
+      songPath: "./assets/musics/song4.mp3",
+      author: "Son Van 4",
+      image: "https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/6/f/d/8/6fd8a0ae2ef979a2e77d67dde5c8c91c.jpg",
+    },
+    {
+      songName: "Bai hat 5",
+      songPath: "./assets/musics/song5.mp3",
+      author: "Son Van 5",
+      image: "https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/b/9/e/9/b9e90901695dd29b9622a8d91322d986.jpg",
+    },
   ];
   const [currentSong, setCurrentSong] = useState(0);
 
@@ -97,7 +122,7 @@ function Playingbar() {
                       <div className="thumbnail">
                         <figure className="thumbnail-image">
                           <img
-                            src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/7/4/c/474cac41ad296fbdf93e84a4ed97c2a0.jpg"
+                            src={listAudio[currentSong].image}
                             alt=""
                           />
                         </figure>
@@ -107,10 +132,10 @@ function Playingbar() {
                 </div>
                 <div className="media-content">
                   <h3 className="media-content-song-info">
-                    <Link to="/">Văn Sơn</Link>
+                    <Link to="/">{listAudio[currentSong].songName}</Link>
                   </h3>
                   <span className="media-content-song-subtitle">
-                    <Link to="/">Văn Sơn</Link>
+                    <Link to="/">{listAudio[currentSong].author}</Link>
                   </span>
                 </div>
 
@@ -153,7 +178,9 @@ function Playingbar() {
                 <button
                   className="player-controls-actions-icon fz-40"
                   onClick={() => {
-                    setCurrentSong((currentSong + listAudio.length - 1) % listAudio.length);
+                    setCurrentSong(
+                      (currentSong + listAudio.length - 1) % listAudio.length
+                    );
                     updateAudioSource();
                   }}
                 >
