@@ -1,0 +1,24 @@
+.zm-section-title.title {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-item button{
+    padding: 4px 24px;
+    border: 1px solid var(--border-primary)!important;
+    border-radius: 100px;
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-right: 15px;
+}
+// .nav-link{
+//     padding: 4px 24px;
+//     border: 1px solid var(--border-primary);
+//     border-radius: 100px;
+//     font-weight: 400;
+//     font-size: 12px;
+//     text-transform: uppercase;
+//     margin-right: 15px;
+// }

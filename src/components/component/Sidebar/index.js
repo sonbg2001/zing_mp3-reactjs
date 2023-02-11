@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import paths from "../../../routes/configPath";
 import Button from "../Button";
 import "./Sidebar.scss";
+import { AiOutlinePlus } from 'react-icons/ai';
 function Sidebar() {
   const handleNavClick = (e) => {
     var navbarItems = document.getElementsByClassName("navbar-item");
@@ -9,11 +10,8 @@ function Sidebar() {
       navbarItems[i].addEventListener("click", function () {
         var current = document.getElementsByClassName("navbar-item active");
         current[0].classList.toggle("active");
-        // for (let j of current) {
-        //   j.classList.toggle("active");
-        // }
+
         if (!this.classList.contains("active")) this.classList.add("active");
-        // this.classList.add("active");
       });
     }
   };
@@ -131,12 +129,10 @@ function Sidebar() {
 
           {/* divide */}
           <div className="sidebar-divide"></div>
-
+        </nav>
+        <div className="navbar-under">
           <nav className="navbar-main">
             <ul className="navbar-menu">
-
-
-            
               <li className="navbar-item">
                 <Link to={paths.new} title="Nhạc mới">
                   <svg
@@ -240,24 +236,25 @@ function Sidebar() {
               </li>
             </ul>
           </nav>
-        </nav>
-        <div className="login-nav-container">
-          <div className="text">
-            Đăng nhập để khám phá playlist dành riêng cho bạn
-          </div>
+          <div className="login-nav-container">
+            <div className="text">
+              Đăng nhập để khám phá playlist dành riêng cho bạn
+            </div>
 
-          <Button>
-            <span>Đăng Nhập</span>
-          </Button>
+            <Button>
+              <span>Đăng Nhập</span>
+            </Button>
+          </div>
         </div>
 
         {/* divide */}
         <div className="sidebar-divide"></div>
 
         <div className="add-playlist-sidebar">
-          <button tabIndex="0">
-            <i className="icon ic-add"></i>
-            <span>Tạo playlist mới</span>
+          <button>
+            <h2 className="add-playlist-title">
+              <i><AiOutlinePlus /></i> Tạo playlist mới
+            </h2>
           </button>
         </div>
       </div>

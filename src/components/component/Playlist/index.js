@@ -26,7 +26,7 @@ export default function Playlist() {
                         {/* </figure> */}
                       </div>
                       <div className="zm-card-content">
-                        <h4>{item.title}</h4>
+                        <h4 className="title is-6"><a href="/">{item.title}</a></h4>
                       </div>
                     </div>
                   </div>
