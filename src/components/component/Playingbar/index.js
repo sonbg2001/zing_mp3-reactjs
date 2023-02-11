@@ -10,6 +10,7 @@ import { GiMicrophone } from "react-icons/gi";
 import { TbRepeat, TbRepeatOnce } from "react-icons/tb";
 import { FaRandom } from "react-icons/fa";
 import { FiPauseCircle } from "react-icons/fi";
+import { Link } from "react-router-dom";
 // import Player from "../Player";
 
 function Playingbar() {
@@ -18,11 +19,41 @@ function Playingbar() {
   const [like, setLike] = useState(false);
   const [random, setRandom] = useState(false);
   const [repeat, setRepeat] = useState(0);
-  const [audio] = useState(
-    new Audio(
-      "https://vnso-zn-5-tf-mp3-320s1-zmp3.zmdcdn.me/a7b00f664f26a678ff37/4867814653821791479?authen=exp=1676106545~acl=/a7b00f664f26a678ff37/*~hmac=5fb0fb4b26f7343e6edc5d33409e78a3&fs=MTY3NTkzMzmUsIC0NTmUsICzNXx3ZWJWNnwwfDQyLjExNS45Ny4xMzE"
-    )
-  );
+  const listAudio = [
+    {
+      songName: "Bai hat 1",
+      songPath: "./assets/musics/song1.mp3",
+      author: "Son Van 1",
+      image: "https://haycafe.vn/wp-content/uploads/2022/02/Anh-gai-xinh-Viet-Nam.jpg",
+    },
+    {
+      songName: "Bai hat 2",
+      songPath: "./assets/musics/song2.mp3",
+      author: "Son Van 2",
+      image: "https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/e/d/2/5/ed251cf560be4747e7737b535c357f07.jpg",
+    },
+    {
+      songName: "Bai hat 3",
+      songPath: "./assets/musics/song3.mp3",
+      author: "Son Van 3",
+      image: "https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/7/6/1/6/76167d27268546570f7fa21d8c708ad2.jpg",
+    },
+    {
+      songName: "Bai hat 4",
+      songPath: "./assets/musics/song4.mp3",
+      author: "Son Van 4",
+      image: "https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/6/f/d/8/6fd8a0ae2ef979a2e77d67dde5c8c91c.jpg",
+    },
+    {
+      songName: "Bai hat 5",
+      songPath: "./assets/musics/song5.mp3",
+      author: "Son Van 5",
+      image: "https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/b/9/e/9/b9e90901695dd29b9622a8d91322d986.jpg",
+    },
+  ];
+  const [currentSong, setCurrentSong] = useState(0);
+
+  const [audio] = useState(new Audio(listAudio[currentSong].songPath));
   const [currentTime, setCurrentTime] = useState(0);
 
   // FormatTime
@@ -34,21 +65,50 @@ function Playingbar() {
     return minutes + ":" + seconds;
   }
 
+  function updateAudioSource() {
+    console.log("update song");
+    audio.src = listAudio[currentSong].songPath;
+    audio.load();
+  }
+
+  function nextSong() {
+    console.log("next song");
+
+    if (random) {
+      console.log("random song");
+
+      setCurrentSong(Math.floor(Math.random() * listAudio.length));
+      updateAudioSource();
+    } else if (repeat === 1) {
+      console.log("repeat song");
+
+      setCurrentSong((currentSong + 1) % listAudio.length);
+    }
+
+    updateAudioSource();
+  }
+
   useEffect(() => {
-    if (play) audio.play();
-    else audio.pause();
+    console.log("currentSong: ", currentSong);
     audio.ontimeupdate = () => {
       setCurrentTime(audio.currentTime);
+      if (audio.currentTime > 0.99 * audio.duration) {
+        console.log("end song");
+        nextSong();
+      }
     };
 
     audio.muted = !speaker;
+    if (play) audio.play();
+    else audio.pause();
+
     return () => {
       if (audio) {
         audio.pause(); // to enable garbage collection
       }
     };
     // eslint-disable-next-line
-  }, [play, speaker]);
+  }, [play, speaker, currentSong]);
   return (
     <div id="playing-bar">
       <div className="player-controls">
@@ -57,25 +117,25 @@ function Playingbar() {
             <div className="level-item">
               <div className="media">
                 <div className="media-left">
-                  <a href="/">
+                  <Link to="/">
                     <div className="thumbnail-wrapper">
                       <div className="thumbnail">
                         <figure className="thumbnail-image">
                           <img
-                            src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/7/4/c/474cac41ad296fbdf93e84a4ed97c2a0.jpg"
+                            src={listAudio[currentSong].image}
                             alt=""
                           />
                         </figure>
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 </div>
                 <div className="media-content">
                   <h3 className="media-content-song-info">
-                    <a href="/">Văn Sơn</a>
+                    <Link to="/">{listAudio[currentSong].songName}</Link>
                   </h3>
                   <span className="media-content-song-subtitle">
-                    <a href="/">Văn Sơn</a>
+                    <Link to="/">{listAudio[currentSong].author}</Link>
                   </span>
                 </div>
 
@@ -115,7 +175,15 @@ function Playingbar() {
                   </i>
                 </button>
 
-                <button className="player-controls-actions-icon fz-40">
+                <button
+                  className="player-controls-actions-icon fz-40"
+                  onClick={() => {
+                    setCurrentSong(
+                      (currentSong + listAudio.length - 1) % listAudio.length
+                    );
+                    updateAudioSource();
+                  }}
+                >
                   <i className="svg-hover">
                     <BiSkipPrevious />
                   </i>
@@ -129,7 +197,13 @@ function Playingbar() {
                 >
                   <i>{!play ? <BsPlayCircle /> : <FiPauseCircle />}</i>
                 </button>
-                <button className="player-controls-actions-icon fz-40">
+                <button
+                  className="player-controls-actions-icon fz-40"
+                  onClick={() => {
+                    setCurrentSong((currentSong + 1) % listAudio.length);
+                    updateAudioSource();
+                  }}
+                >
                   <i className="svg-hover">
                     <BiSkipNext />
                   </i>
@@ -161,24 +235,28 @@ function Playingbar() {
                       }%, var(--progressbar-player-bg) 0%, var(--progressbar-player-bg) 100%)`,
                       alignSelf: "center",
                     }}
-                   
                   >
                     <input
                       type="range"
-                      id="cowbell"
+                      className="cowbell"
                       name="cowbell"
                       min="0"
                       max="100"
-                      value={""+ (audio.currentTime * 100) / audio.duration || "0"}
+                      value={
+                        "" + (audio.currentTime * 100) / audio.duration || "0"
+                      }
                       step="10"
                       style={{
-                        width: `${document.querySelector(".duration-bar") && document.querySelector(".duration-bar").offsetWidth}px`,
+                        width: `${
+                          document.querySelector(".duration-bar") &&
+                          document.querySelector(".duration-bar").offsetWidth
+                        }px`,
                         height: "3px",
                         cursor: "pointer",
-                        
                       }}
                       onChange={(e) => {
-                        audio.currentTime = e.target.value *  audio.duration /100;
+                        audio.currentTime =
+                          (e.target.value * audio.duration) / 100;
                       }}
                     />
                     <div
@@ -238,14 +316,14 @@ function Playingbar() {
                   className="volumn-slider-bar"
                   style={{
                     borderRadius: "4px",
-                    background:
-                      "linear-gradient(to right, var(--progressbar-active-bg) 0%, var(--progressbar-active-bg) 30%, var(--progressbar-player-bg) 30%, var(--progressbar-player-bg) 100%  )",
+                    background: `linear-gradient(to right, var(--progressbar-active-bg) 0%, var(--progressbar-active-bg) ${
+                      audio.volume * 100
+                    }%, var(--progressbar-player-bg) 0%, var(--progressbar-player-bg) 100%  )`,
                     alignSelf: "center",
                     width: "100%",
                     height: "3px",
                   }}
                 >
-                
                   <div
                     tabIndex={0}
                     aria-valuemax={100}
@@ -257,7 +335,38 @@ function Playingbar() {
                     style={{
                       borderRadius: "50%",
                       backgroundColor: "var(--progressbar-active-bg)",
-                      transform: `translate(47.6116px, -3.5px)`,
+                      // transform: `translate(47.6116px, -3.5px)`,
+                      transform: `translate(${
+                        document.querySelector(".volumn-slider-bar") &&
+                        audio.volume *
+                          document.querySelector(".volumn-slider-bar")
+                            .offsetWidth
+                      }px, -3.5px)`,
+                    }}
+                  />
+                  <input
+                    type="range"
+                    className="cowbell"
+                    name="cowbell"
+                    min="0"
+                    max="100"
+                    value={"" + audio.volume * 100 || "0"}
+                    step="10"
+                    style={{
+                      width: `${
+                        document.querySelector(".volumn-slider-bar") &&
+                        document.querySelector(".volumn-slider-bar").offsetWidth
+                      }px`,
+                      height: "3px",
+                      cursor: "pointer",
+                      position: "absolute",
+                      top: "44px",
+                    }}
+                    onChange={(e) => {
+                      if (audio.volume <= 0 && speaker) setSpeaker(false);
+                      else setSpeaker(true);
+
+                      audio.volume = e.target.value / 100;
                     }}
                   />
                 </div>
