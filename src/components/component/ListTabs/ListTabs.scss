@@ -13,12 +13,112 @@
     text-transform: uppercase;
     margin-right: 15px;
 }
-// .nav-link{
-//     padding: 4px 24px;
-//     border: 1px solid var(--border-primary);
-//     border-radius: 100px;
-//     font-weight: 400;
-//     font-size: 12px;
-//     text-transform: uppercase;
-//     margin-right: 15px;
-// }
+.nav-tabs{
+    border-bottom: none!important;
+    .nav-link{
+        border-top-left-radius: 100px!important;
+        border-top-right-radius: 100px!important;
+        color: #fff!important;
+    }
+}
+.nav-link.active {
+    background-color:  var(--purple-primary)!important;
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+   color: #fff !important;
+}
+
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    margin: 0 -15px;
+    height: 321px
+}
+.is-desktop-4 {
+    width: 33.33333%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 14px!important;
+    padding-right: 14px!important;
+    float: left;
+    flex-shrink: 0;
+}
+.column {
+    display: block;
+    padding: 0 15px;
+}
+
+.list-item {
+    border-bottom: none;
+    border-radius: 4px;
+}
+
+.media {
+    align-items: center;
+    display: flex;
+    text-align: left;
+    padding: 10px;
+    border-radius: 5px;
+    // -webkit-user-select: none;
+    // -ms-user-select: none;
+    user-select: none;
+}
+
+.media-left {
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    width: 50%;
+    margin-right: 10px;
+    flex-basis: auto;
+}
+
+.song-thumb {
+    margin-right: 10px;
+    flex-shrink: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+}
+figure {
+    margin: 0 0 1rem;
+}
+.is-60x60 {
+    width: 60px;
+    height: 60px;
+}
+.card-info {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.title-wrapper {
+    max-width: 100%;
+    // display: flex;
+    align-items: center;
+}
+.title {
+    display: flex;
+    align-items: center;
+    flex: 1 1;
+}
+.media .subtitle {
+    display: block;
+    font-size: 12px;
+    margin-top: 3px;
+    margin-bottom: 0;
+}
+.time-release {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-top: 3px;
+    white-space: nowrap;
+}
