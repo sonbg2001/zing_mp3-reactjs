@@ -19,12 +19,12 @@ function UncontrolledExample() {
         className="mb-3"
       >
         <Tab eventKey="all" title="Tất cả">
-          <div className="columns is-multiline">
-            <div className="column mar-b-0 is-fullhd-4 is-widescreen-4 is-desktop-4 is-touch-6 is-tablet-6">
-              <div className="list">
+          <div className=" columns is-multiline">
+            <div className="w-100 column mar-b-0 is-fullhd-4 is-widescreen-4 is-desktop-4 is-touch-6 is-tablet-6">
+              <div className="list row">
                 {All.map((item, index) => {
                   return (
-                    <div key={index} className="list-item">
+                    <div key={index} className="col-sm list-item">
                       <div className="media">
                         <div className="media-left">
                           <div className="song-thumb">
@@ -57,7 +57,7 @@ function UncontrolledExample() {
         </Tab>
         <Tab eventKey="vietnam" title="Việt Nam">
           <div className="columns is-multiline">
-            <div className="column mar-b-0 is-fullhd-4 is-widescreen-4 is-desktop-4 is-touch-6 is-tablet-6">
+            <div className="w-100 column mar-b-0 is-fullhd-4 is-widescreen-4 is-desktop-4 is-touch-6 is-tablet-6">
               <div className="list">
                 {VietNam.map((item, index) => {
                   return (

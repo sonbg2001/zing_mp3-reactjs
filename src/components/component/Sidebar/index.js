@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import paths from "../../../routes/configPath";
 import Button from "../Button";
 import "./Sidebar.scss";
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus } from "react-icons/ai";
 function Sidebar() {
   const handleNavClick = (e) => {
     var navbarItems = document.getElementsByClassName("navbar-item");
@@ -124,11 +124,13 @@ function Sidebar() {
                   <span>Theo Dõi</span>
                 </Link>
               </li>
+
+              {/* divide */}
+          <div className="sidebar-divide"></div>
             </ul>
           </nav>
 
-          {/* divide */}
-          <div className="sidebar-divide"></div>
+          
         </nav>
         <div className="navbar-under">
           <nav className="navbar-main">
@@ -234,6 +236,8 @@ function Sidebar() {
                   <span>MV</span>
                 </Link>
               </li>
+              {/* divide */}
+              <div className="sidebar-divide"></div>
             </ul>
           </nav>
           <div className="login-nav-container">
@@ -247,13 +251,13 @@ function Sidebar() {
           </div>
         </div>
 
-        {/* divide */}
-        <div className="sidebar-divide"></div>
-
         <div className="add-playlist-sidebar">
           <button>
             <h2 className="add-playlist-title">
-              <i><AiOutlinePlus /></i> Tạo playlist mới
+              <i>
+                <AiOutlinePlus />
+              </i>{" "}
+              Tạo playlist mới
             </h2>
           </button>
         </div>

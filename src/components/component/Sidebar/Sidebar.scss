@@ -1,3 +1,7 @@
+:root {
+  
+}
+
 .sidebar {
   height: calc(100vh - 90px);
   position: relative;
@@ -35,7 +39,6 @@
 
 .navbar-main {
   position: relative;
-  margin-bottom: 15px;
   width: 100%;
   overflow: auto;
 }
@@ -64,6 +67,7 @@
 .sidebar-divide {
   position: relative;
   height: 1px;
+  margin-top: 20px;
 }
 .sidebar-divide:after {
   content: "";
@@ -79,7 +83,6 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   height: 176px;
-    margin-top: 18px;
   &:hover::-webkit-scrollbar {
     display: block;
   }
